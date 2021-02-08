@@ -43,6 +43,7 @@ function paintSeries(array) {
     const newDiv = document.createElement("div");
     newLi.appendChild(newDiv);
     newDiv.classList.add("serie__conatiner");
+    newDiv.classList.add("js-container");
 
     const newH2 = document.createElement("h2");
     const textH2 = document.createTextNode(serie.title);
@@ -59,3 +60,17 @@ function paintSeries(array) {
 buttonelement.addEventListener("click", handleSearchApi);
 
 // Lista de favoritas
+
+// const favoriteElement = document.querySelector(".js-container");
+
+// let favoriteSeries = [];
+
+// const handleFavoriteSeries = (ev) => {
+
+//   const value = ev.target
+//   favoriteSeries.push(value);
+// };
+
+// favoriteElement.addEventListener("click", handleFavoriteSeries);
+
+// Cómo pintar el array de favoritas en el html 

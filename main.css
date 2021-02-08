@@ -1,17 +1,23 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.serie__conatiner{
-    background-color: rgb(54, 201, 201);}
-   
-
-.serie__title{
-    color: blue;
+.serie__conatiner {
+  background-color: rgb(54, 201, 201);
+  height: 240px;
+  width: 240px;
+  margin: 10px;
+  cursor: pointer;
 }
 
-.image{
-height: 200px;
-width: 200px;
+.serie__title {
+  color: blue;
+}
+
+.image {
+  height: 200px;
+  width: 200px;
+  padding: 10px 20px;
+  
 }
