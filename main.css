@@ -3,3 +3,15 @@
     padding: 0;
     box-sizing: border-box;
 }
+.serie__conatiner{
+    background-color: rgb(54, 201, 201);}
+   
+
+.serie__title{
+    color: blue;
+}
+
+.image{
+height: 200px;
+width: 200px;
+}
