@@ -9,7 +9,6 @@ let seriesArray = [];
 
 
 // Aquí al momento de darle search, se llama al Api y me devuelve título y foto de la serie en un array
-
 const handleSearchApi = () => {
   const search = inputElement.value;
   fetch(`http://api.tvmaze.com/search/shows?q=${search}`)
@@ -64,6 +63,15 @@ function paintSeries(array) {
 }
 buttonelement.addEventListener("click", handleSearchApi);
 
+// Local Storage
+function setLocalStorage() {
+  localStorage.setItem('favorite'), JSON.stringify(favoriteSeries);
+}
+function getLocalStorage() {
+  const favoriteLocal = JSON.parse(localStorage.getItem('favorite'));
+  return favoriteLocal;
+}
+
 // Lista de favoritas (Busco en SeriesArray con find x id)
 
 let favoriteSeries = [];
@@ -72,14 +80,9 @@ const handleFavoriteSeries = (ev) => {
 
   let favorite = seriesArray.find(element => element.id == ev.currentTarget.id);
   favoriteSeries.push(favorite);
-  
   paintFavorites();
-
- 
 };
-
-
-// Cómo pintar el array de favoritas en el html 
+// Aquí pinto el array de favoritas en el html 
 
 function paintFavorites() {
 
