@@ -27,11 +27,3 @@
   flex-direction: row-reverse;
   width: 600px;
 }
-
-.series-list{ 
-float: left;
-}
-
-.favorite-list{
-float: right
-}
