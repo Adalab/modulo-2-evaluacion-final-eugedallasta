@@ -3,27 +3,41 @@
   padding: 0;
   box-sizing: border-box;
   list-style: none;
+  font-family: 'Courier New', Courier, monospace;
 }
 .serie__conatiner {
-  background-color: rgb(54, 201, 201);
-  height: 240px;
+  background-color: rgb(119, 240, 240);
+  height: 340px;
   width: 240px;
   margin: 10px;
   cursor: pointer;
 }
 
 .serie__title {
-  color: blue;
+  color: rgb(2, 37, 39);
+  text-align: center;
+  padding-top: 10px;
+  font-size: 16px;
 }
 
 .image {
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 240px;
   padding: 10px 20px;
   
 }
 .main{
   display:flex;
   flex-direction: row-reverse;
-  width: 600px;
+  background-size: cover;
+}
+
+.header{
+  width: 100%;
+  height: 200px;
+  background-color: cadetblue;
+}
+.h1{
+  text-align: center;
+  padding-top: 50px;
 }
