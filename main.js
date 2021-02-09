@@ -7,7 +7,6 @@ const ulElement = document.querySelector(".js-ul");
 const ulFavoriteElement = document.querySelector(".js-ul-favoritas");
 let seriesArray = [];
 
-
 // Aquí al momento de darle search, se llama al Api y me devuelve título y foto de la serie en un array
 const handleSearchApi = () => {
   const search = inputElement.value;
@@ -33,7 +32,6 @@ const handleSearchApi = () => {
 };
 // Aquí pinto en html
 function paintSeries(array) {
-
   while (ulElement.firstChild) {
     ulElement.removeChild(ulElement.firstChild);
   }
@@ -64,10 +62,10 @@ function paintSeries(array) {
 buttonelement.addEventListener("click", handleSearchApi);
 
 // Local Storage
-function setLocalStorage() {
-  localStorage.setItem("favorite", JSON.stringify(favoriteSeries));
+function setLocalStorage(array) {
+  localStorage.setItem("favorite", JSON.stringify(array));
 }
-  function getLocalStorage() {
+function getLocalStorage() {
   const favoriteLocal = JSON.parse(localStorage.getItem("favorite"));
   return favoriteLocal;
 }
@@ -77,27 +75,39 @@ function setLocalStorage() {
 let favoriteSeries = [];
 
 const handleFavoriteSeries = (ev) => {
-
-  let favorite = seriesArray.find(element => element.id == ev.currentTarget.id);
+  let favorite = seriesArray.find(
+    (element) => element.id == ev.currentTarget.id
+  );
   favoriteSeries.push(favorite);
+  setLocalStorage(favoriteSeries);
   paintFavorites();
 };
-// Aquí pinto el array de favoritas en el html 
+
+paintFavorites();
+
+// Aquí pinto el array de favoritas en el html
 
 function paintFavorites() {
+  while (ulFavoriteElement.firstChild) {
+    ulFavoriteElement.removeChild(ulFavoriteElement.firstChild);
+  }
+  let arrayFavoriteStorage = getLocalStorage();
 
-   while (ulFavoriteElement.firstChild) {
-     ulFavoriteElement.removeChild(ulFavoriteElement.firstChild);
-   }
-
-  for (const serie of favoriteSeries) {
+  for (const serie of arrayFavoriteStorage) {
     const newLi = document.createElement("li");
     ulFavoriteElement.appendChild(newLi);
+    newLi.dataset.id = arrayFavoriteStorage.indexOf(serie);
 
     const newDiv = document.createElement("div");
     newLi.appendChild(newDiv);
     newDiv.classList.add("serie__conatiner");
     newDiv.style.backgroundColor = "#CCCCCC";
+    
+    const newButton = document.createElement('button');
+    newButton.dataset.id = arrayFavoriteStorage.indexOf(serie);
+    newButton.innerText = 'delete';
+    newDiv.appendChild(newButton);
+
 
     const newH2 = document.createElement("h2");
     const textH2 = document.createTextNode(serie.title);
@@ -111,4 +121,11 @@ function paintFavorites() {
     newDiv.appendChild(newImage);
     newImage.classList.add("image");
   }
+}
+
+// donde escucho??? falta otra funcion?
+// Borrar series de favoritos
+function handleDeleteFavorites(ev) {
+  const clickedItem = parseInt(ev.currentTarget.id);
+  arrayFavoriteStorage.splice(clickedItem, 1);
 }
