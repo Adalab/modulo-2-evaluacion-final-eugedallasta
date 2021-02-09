@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 .serie__conatiner {
   background-color: rgb(54, 201, 201);
@@ -20,4 +21,17 @@
   width: 200px;
   padding: 10px 20px;
   
+}
+.main{
+  display:flex;
+  flex-direction: row-reverse;
+  width: 600px;
+}
+
+.series-list{ 
+float: left;
+}
+
+.favorite-list{
+float: right
 }

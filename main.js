@@ -65,10 +65,10 @@ buttonelement.addEventListener("click", handleSearchApi);
 
 // Local Storage
 function setLocalStorage() {
-  localStorage.setItem('favorite'), JSON.stringify(favoriteSeries);
+  localStorage.setItem("favorite", JSON.stringify(favoriteSeries));
 }
-function getLocalStorage() {
-  const favoriteLocal = JSON.parse(localStorage.getItem('favorite'));
+  function getLocalStorage() {
+  const favoriteLocal = JSON.parse(localStorage.getItem("favorite"));
   return favoriteLocal;
 }
 
@@ -97,10 +97,12 @@ function paintFavorites() {
     const newDiv = document.createElement("div");
     newLi.appendChild(newDiv);
     newDiv.classList.add("serie__conatiner");
+    newDiv.style.backgroundColor = "#CCCCCC";
 
     const newH2 = document.createElement("h2");
     const textH2 = document.createTextNode(serie.title);
     newH2.classList.add("serie__title");
+    newH2.style = "color:red";
     newDiv.appendChild(newH2);
     newH2.appendChild(textH2);
 
