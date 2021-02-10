@@ -72,12 +72,13 @@ function getLocalStorage() {
 
 // Lista de favoritas (Busco en SeriesArray con find x id)
 
-let favoriteSeries = [];
+
 
 const handleFavoriteSeries = (ev) => {
   let favorite = seriesArray.find(
     (element) => element.id == ev.currentTarget.id
   );
+  let favoriteSeries = getLocalStorage();
   favoriteSeries.push(favorite);
   setLocalStorage(favoriteSeries);
   paintFavorites();
@@ -102,13 +103,12 @@ function paintFavorites() {
     newLi.appendChild(newDiv);
     newDiv.classList.add("serie__conatiner");
     newDiv.style.backgroundColor = "#CCCCCC";
-    
-    const newButton = document.createElement('button');
+
+    const newButton = document.createElement("button");
     newButton.dataset.id = arrayFavoriteStorage.indexOf(serie);
-    newButton.innerText = 'delete';
+    newButton.innerText = "delete";
     newDiv.appendChild(newButton);
     newButton.addEventListener("click", handleDeleteFavorites);
-
 
     const newH2 = document.createElement("h2");
     const textH2 = document.createTextNode(serie.title);
@@ -124,7 +124,6 @@ function paintFavorites() {
   }
 }
 
-// donde escucho??? falta otra funcion?
 // Borrar series de favoritos
 function handleDeleteFavorites(ev) {
   let deletedArray = getLocalStorage();
@@ -132,5 +131,4 @@ function handleDeleteFavorites(ev) {
   deletedArray.splice(clickedItem, 1);
   setLocalStorage(deletedArray);
   paintFavorites();
-
 }
