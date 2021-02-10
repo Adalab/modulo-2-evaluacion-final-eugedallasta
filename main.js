@@ -107,6 +107,7 @@ function paintFavorites() {
     newButton.dataset.id = arrayFavoriteStorage.indexOf(serie);
     newButton.innerText = 'delete';
     newDiv.appendChild(newButton);
+    newButton.addEventListener("click", handleDeleteFavorites);
 
 
     const newH2 = document.createElement("h2");
@@ -126,6 +127,10 @@ function paintFavorites() {
 // donde escucho??? falta otra funcion?
 // Borrar series de favoritos
 function handleDeleteFavorites(ev) {
-  const clickedItem = parseInt(ev.currentTarget.id);
-  arrayFavoriteStorage.splice(clickedItem, 1);
+  let deletedArray = getLocalStorage();
+  const clickedItem = parseInt(ev.currentTarget.dataset.id);
+  deletedArray.splice(clickedItem, 1);
+  setLocalStorage(deletedArray);
+  paintFavorites();
+
 }
