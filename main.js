@@ -10,7 +10,7 @@ let seriesArray = [];
 // Aquí al momento de darle search, se llama al Api y me devuelve título y foto de la serie en un array
 const handleSearchApi = () => {
   const search = inputElement.value;
-  fetch(`http://api.tvmaze.com/search/shows?q=${search}`)
+  fetch(`//api.tvmaze.com/search/shows?q=${search}`)
     .then((response) => response.json())
     .then((data) => {
       seriesArray = [];
