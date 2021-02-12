@@ -91,12 +91,18 @@ const handleShowName = (event) => {
 
  };
 
-
+let favoriteSeries = [];
 const handleFavoriteSeries = (ev) => {
   let favorite = seriesArray.find(
     (element) => element.id == ev.currentTarget.id
   );
-  let favoriteSeries = getLocalStorage();
+  
+
+  let getLocal = getLocalStorage();
+  if (getLocal !== null) {
+    let favoriteSeries = getLocalStorage();
+  } 
+  
   favoriteSeries.push(favorite);
   setLocalStorage(favoriteSeries);
   paintFavorites();
@@ -112,33 +118,36 @@ function paintFavorites() {
   }
   let arrayFavoriteStorage = getLocalStorage();
 
-  for (const serie of arrayFavoriteStorage) {
-    const newLi = document.createElement("li");
-    ulFavoriteElement.appendChild(newLi);
-    newLi.dataset.id = arrayFavoriteStorage.indexOf(serie);
+  if (arrayFavoriteStorage !== null) {
 
-    const newDiv = document.createElement("div");
-    newLi.appendChild(newDiv);
-    newDiv.classList.add("serie__conatiner");
-    newDiv.style.backgroundColor = "#CCCCCC";
+    for (const serie of arrayFavoriteStorage) {
+      const newLi = document.createElement("li");
+      ulFavoriteElement.appendChild(newLi);
+      newLi.dataset.id = arrayFavoriteStorage.indexOf(serie);
 
-    const newButton = document.createElement("button");
-    newButton.dataset.id = arrayFavoriteStorage.indexOf(serie);
-    newButton.innerText = "delete";
-    newDiv.appendChild(newButton);
-    newButton.addEventListener("click", handleDeleteFavorites);
+      const newDiv = document.createElement("div");
+      newLi.appendChild(newDiv);
+      newDiv.classList.add("serie__conatiner");
+      newDiv.style.backgroundColor = "#CCCCCC";
 
-    const newH2 = document.createElement("h2");
-    const textH2 = document.createTextNode(serie.title);
-    newH2.classList.add("serie__title");
-    newH2.style = "color:red";
-    newDiv.appendChild(newH2);
-    newH2.appendChild(textH2);
+      const newButton = document.createElement("button");
+      newButton.dataset.id = arrayFavoriteStorage.indexOf(serie);
+      newButton.innerText = "delete";
+      newDiv.appendChild(newButton);
+      newButton.addEventListener("click", handleDeleteFavorites);
 
-    const newImage = document.createElement("img");
-    newImage.src = serie.url;
-    newDiv.appendChild(newImage);
-    newImage.classList.add("image");
+      const newH2 = document.createElement("h2");
+      const textH2 = document.createTextNode(serie.title);
+      newH2.classList.add("serie__title");
+      newH2.style = "color:red";
+      newDiv.appendChild(newH2);
+      newH2.appendChild(textH2);
+
+      const newImage = document.createElement("img");
+      newImage.src = serie.url;
+      newDiv.appendChild(newImage);
+      newImage.classList.add("image");
+    }
   }
 }
 
