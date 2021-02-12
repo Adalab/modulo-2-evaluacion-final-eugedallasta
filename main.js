@@ -15,6 +15,8 @@ const handleSearchApi = () => {
     .then((data) => {
       seriesArray = [];
 
+      console.log(data);
+
       for (let index = 0; index < data.length; index++) {
         seriesArray[index] = {};
 
@@ -26,6 +28,7 @@ const handleSearchApi = () => {
         }
         seriesArray[index].title = data[index].show.name;
         seriesArray[index].id = data[index].show.id;
+        seriesArray[index].genres = data[index].show.genres;
       }
       paintSeries(seriesArray);
     });
@@ -40,6 +43,7 @@ function paintSeries(array) {
     const newLi = document.createElement("li");
     ulElement.appendChild(newLi);
     newLi.addEventListener("click", handleFavoriteSeries);
+    // newLi.addEventListener('click', handleShowName);
 
     const newDiv = document.createElement("div");
     newLi.appendChild(newDiv);
@@ -57,6 +61,13 @@ function paintSeries(array) {
     newImage.src = serie.url;
     newDiv.appendChild(newImage);
     newImage.classList.add("image");
+
+    const newP = document.createElement("p");
+    const contentP = document.createTextNode(serie.genres);
+    newDiv.appendChild(newP);
+    newP.appendChild(contentP);
+    // console.log(serie.genres[0]);
+
   }
 }
 buttonelement.addEventListener("click", handleSearchApi);
@@ -71,7 +82,14 @@ function getLocalStorage() {
 }
 
 // Lista de favoritas (Busco en SeriesArray con find x id)
+const handleShowName = (event) => {
 
+  let showName = seriesArray.find(
+    (element) => element.id === parseInt(event.currentTarget.id)
+  );
+  console.log(showName.title);
+
+ };
 
 
 const handleFavoriteSeries = (ev) => {
